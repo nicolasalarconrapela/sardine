@@ -1,0 +1,8 @@
+* V.0.0.1
+    * Agregacion de 'CHANGELOG'
+    * Upd. .gitignore
+    * POM.xml
+        * Agregacion de
+            * javax.xml.bind
+            * Compilacion en Java7
+    * Agregacion de sonarqube

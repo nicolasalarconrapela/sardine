@@ -29,3 +29,8 @@ Questions? Please ask on our [mailing list](https://groups.google.com/forum/#!fo
 Sardine available under the Apache License 2.0.
 
 If you like this library, I'd appreciate if you would blog/tweet about it. If you don't like it, well...
+
+    mvn sonar:sonar \
+      -Dsonar.projectKey=Sardine \
+      -Dsonar.host.url=http://192.168.0.35:9000 \
+      -Dsonar.login=9b86a4c765d979bd43f3f2e33182fe4afb9e0bf1
