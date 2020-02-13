@@ -252,7 +252,7 @@ public class FunctionalSardineTest
 		try
 		{
 			sardine.createDirectory(url);
-			List<DavAce> aces = new ArrayList<>();
+			List<DavAce> aces = new ArrayList<DavAce>();
 			sardine.setAcl(url, aces);
 			DavAcl acls = sardine.getAcl(url);
 			for (DavAce davace : acls.getAces())

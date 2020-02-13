@@ -7,14 +7,12 @@ None of them do things quite the way I wanted.
 
 The [UsageGuide](https://github.com/lookfirst/sardine/wiki/UsageGuide) documents how to use Sardine. If you are hungry, this is an appetizer for retrieving a directory listing from a remote webdav server:
 
-```java
-Sardine sardine = SardineFactory.begin();
-List<DavResource> resources = sardine.list("http://yourdavserver.com/adirectory/");
-for (DavResource res : resources)
-{
-     System.out.println(res);
-}
-```
+     Sardine sardine = SardineFactory.begin();
+     List<DavResource> resources = sardine.list("http://yourdavserver.com/adirectory/");
+     for (DavResource res : resources)
+     {
+          System.out.println(res);
+     }
 
 Sardine is focused on being a useful library for common use cases. I also need it to support the latest version of [HttpClient](http://httpcomponents.apache.org/). It abstracts away the connection details and provides easy to use methods to accomplish webdav'y actions.
 
@@ -29,3 +27,6 @@ Questions? Please ask on our [mailing list](https://groups.google.com/forum/#!fo
 Sardine available under the Apache License 2.0.
 
 If you like this library, I'd appreciate if you would blog/tweet about it. If you don't like it, well...
+
+
+     
