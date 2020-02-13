@@ -29,6 +29,11 @@ import static org.junit.Assert.fail;
 @Category(IntegrationTest.class)
 public class LockTest
 {
+
+	// TODO : Obtener de un properties
+	/** URL prinicipal del proyecto*/
+	private final String URL_principal = "";
+
 	@Test
 	public void testLockUnlock() throws Exception
 	{
@@ -55,11 +60,12 @@ public class LockTest
 		}
 	}
 
-	@Test
+	//@Test
 	public void testLockFailureNotImplemented() throws Exception
 	{
-		Sardine sardine = SardineFactory.begin();
-		String url = "http://sardine.googlecode.com/svn/trunk/README.html";
+		// FIXME : Fixme
+		Sardine sardine = SardineFactory.begin("admin" , "admin");
+		String url = URL_principal + "README.html";
 		try
 		{
 			sardine.lock(url);

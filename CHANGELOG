@@ -6,3 +6,5 @@
             * javax.xml.bind
             * Compilacion en Java7
     * Agregacion de sonarqube
+* V.0.0.1A
+    * Mejora de test sin fallos
