@@ -10,3 +10,7 @@
     * Mejora de test sin fallos
 * V.0.0.1B
     * Limpieza de 'WARNING'
+* V.0.0.1C 
+    * POM.xml
+        * 5.11 => Upd.
+        * Fixed dependencias que no existian ( @latest por defecto)
