@@ -44,7 +44,7 @@ import java.util.List;
 public class SupportedReportSet {
 
     @XmlElement(name = "supported-report", required = true)
-    protected List<SupportedReport> supportedReport;
+    private List<SupportedReport> supportedReport;
 
     /**
      * Gets the value of the supportedReport property.
@@ -70,7 +70,7 @@ public class SupportedReportSet {
      */
     public List<SupportedReport> getSupportedReport() {
         if (supportedReport == null) {
-            supportedReport = new ArrayList<SupportedReport>();
+            supportedReport = new ArrayList<>();
         }
         return this.supportedReport;
     }

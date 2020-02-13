@@ -43,7 +43,7 @@ import java.util.List;
 public class QuotaAvailableBytes {
 
     @XmlMixed
-    protected List<String> content;
+    private List<String> content;
 
     /**
      * Gets the value of the content property.
@@ -69,7 +69,7 @@ public class QuotaAvailableBytes {
      */
     public List<String> getContent() {
         if (content == null) {
-            content = new ArrayList<String>();
+            content = new ArrayList<>();
         }
         return this.content;
     }

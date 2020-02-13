@@ -64,7 +64,7 @@ public class MultiStatusResponseHandler extends ValidatingResponseHandler<Multis
 	 * @return Multistatus element parsed from the stream
 	 * @throws IOException When there is a JAXB error
 	 */
-	protected Multistatus getMultistatus(InputStream stream)
+    Multistatus getMultistatus(InputStream stream)
 			throws IOException
 	{
 		return SardineUtil.unmarshal(stream);

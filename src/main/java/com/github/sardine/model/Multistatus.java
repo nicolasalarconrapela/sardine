@@ -49,11 +49,11 @@ import java.util.List;
 public class Multistatus {
 
     @XmlElement(required = true)
-    protected List<Response> response;
-    protected String responsedescription;
+    private List<Response> response;
+    private String responsedescription;
     @XmlElement(name = "sync-token")
     @XmlSchemaType(name = "anyURI")
-    protected String syncToken;
+    private String syncToken;
 
     /**
      * Gets the value of the response property.
@@ -79,7 +79,7 @@ public class Multistatus {
      */
     public List<Response> getResponse() {
         if (response == null) {
-            response = new ArrayList<Response>();
+            response = new ArrayList<>();
         }
         return this.response;
     }

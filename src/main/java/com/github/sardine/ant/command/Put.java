@@ -38,7 +38,7 @@ public class Put extends Command {
 	private URL dest;
 
 	/** An sets of source files. */
-	private List<FileSet> srcFileSets = new ArrayList<FileSet>();
+	private final List<FileSet> srcFileSets = new ArrayList<>();
 
 	/** A single source file. */
 	private File srcFile = null;
@@ -47,8 +47,8 @@ public class Put extends Command {
 	private String contentType;
 
 	/** Settings for put with filtering. */
-	private FilterSetCollection filterSets = new FilterSetCollection();
-	private Vector<FilterChain> filterChains = new Vector<FilterChain>();
+	private final FilterSetCollection filterSets = new FilterSetCollection();
+	private final Vector<FilterChain> filterChains = new Vector<>();
 	private String inputEncoding = null;
 	private String outputEncoding = null;
 	private boolean inMemoryFiltering = true;
@@ -69,7 +69,7 @@ public class Put extends Command {
 			urlString = urlString.endsWith("/") ? urlString : (urlString + '/');
 			URL baseUrl = new URL(urlString);
 			// to prevent unnecessary dir checks
-			Set<URL> alreadyCreated = new HashSet<URL>();
+			Set<URL> alreadyCreated = new HashSet<>();
 			File currentParentDir = null;
 			for (Iterator<FileSet> setIterator = srcFileSets.iterator(); setIterator.hasNext();) {
 				FileSet fileSet = setIterator.next();

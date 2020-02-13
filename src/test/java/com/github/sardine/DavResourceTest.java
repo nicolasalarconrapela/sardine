@@ -34,17 +34,17 @@ public class DavResourceTest
 {
 	private static class Builder
 	{
-		private String href;
+		private final String href;
 		private Date creation;
 		private Date modified;
 		private String contentType;
 		private String etag;
 		private String displayName;
-		private List<QName> resourceTypes= Collections.<QName>emptyList();
+		private List<QName> resourceTypes= Collections.emptyList();
 		private String contentLanguage;
 		private Long contentLength = -1L;
-		private List<QName> supportedReports = Collections.<QName>emptyList();
-		private Map<QName, String> customProps = Collections.<QName, String>emptyMap();
+		private List<QName> supportedReports = Collections.emptyList();
+		private Map<QName, String> customProps = Collections.emptyMap();
 
 		Builder(String href)
 		{
@@ -63,9 +63,9 @@ public class DavResourceTest
 			return this;
 		}
 
-		Builder ofType(String contentType)
+		Builder ofType()
 		{
-			this.contentType = contentType;
+			this.contentType = "httpd/unix-directory";
 			return this;
 		}
 
@@ -82,8 +82,8 @@ public class DavResourceTest
 			return this;
 		}
 
-		Builder withDisplayName(String displayName) {
-			this.displayName = displayName;
+		Builder withDisplayName() {
+			this.displayName = "My path";
 			return this;
 		}
 
@@ -92,8 +92,8 @@ public class DavResourceTest
 			return this;
 		}
 
-		Builder inLanguage(String contentLanguage) {
-			this.contentLanguage = contentLanguage;
+		Builder inLanguage() {
+			this.contentLanguage = "en_us";
 			return this;
 		}
 
@@ -134,7 +134,7 @@ public class DavResourceTest
 	@Test
 	public void testGetContentType() throws Exception
 	{
-		DavResource folder = new Builder("/test/path/").ofType("httpd/unix-directory").build();
+		DavResource folder = new Builder("/test/path/").ofType().build();
 		assertEquals("httpd/unix-directory", folder.getContentType());
 	}
 
@@ -148,14 +148,14 @@ public class DavResourceTest
 	@Test
 	public void testGetContentLanguage() throws Exception
 	{
-		DavResource folder = new Builder("/test/path/").inLanguage("en_us").build();
+		DavResource folder = new Builder("/test/path/").inLanguage().build();
 		assertEquals("en_us", folder.getContentLanguage());
 	}
 
 	@Test
 	public void testDisplayname() throws Exception
 	{
-		DavResource folder = new Builder("/test/path/").withDisplayName("My path").build();
+		DavResource folder = new Builder("/test/path/").withDisplayName().build();
 		assertEquals("My path", folder.getDisplayName());
 	}
 
@@ -170,7 +170,7 @@ public class DavResourceTest
 	@Test
 	public void testIsDirectory() throws Exception
 	{
-		DavResource folder = new Builder("/test/path/").ofType("httpd/unix-directory").build();
+		DavResource folder = new Builder("/test/path/").ofType().build();
 		assertTrue(folder.isDirectory());
 	}
 
@@ -179,7 +179,7 @@ public class DavResourceTest
 	{
         {
             DavResource file = new Builder("/test/path/file.html").ofLength(6587L)
-					.withCustomProps(Collections.<QName, String>singletonMap(
+					.withCustomProps(Collections.singletonMap(
 							new QName("http://mynamespace", "property", "my"), "custom")).build();
             assertNotNull(file.getCustomProps());
             assertEquals(file.getCustomProps(), Collections.singletonMap("property", "custom"));
@@ -210,11 +210,11 @@ public class DavResourceTest
 	public void testFullyQualifiedHref() throws Exception
 	{
 		{
-			DavResource folder = new Builder("/test/path/").ofType("httpd/unix-directory").ofLength(3423L).build();
+			DavResource folder = new Builder("/test/path/").ofType().ofLength(3423L).build();
 			assertEquals("/test/path/", folder.getPath());
 		}
 		{
-			DavResource folder = new Builder("http://example.net/test/path/").ofType("httpd/unix-directory")
+			DavResource folder = new Builder("http://example.net/test/path/").ofType()
 					.ofLength(3423L).build();
 			assertEquals("/test/path/", folder.getPath());
 		}
@@ -225,12 +225,12 @@ public class DavResourceTest
 	{
 		{
 			DavResource resource = new Builder("http://example.net/path/%C3%A4%C3%B6%C3%BC/")
-					.ofType("httpd/unix-directory").ofLength(3423L).build();
+					.ofType().ofLength(3423L).build();
 			assertEquals("/path/äöü/", resource.getPath());
 			assertEquals("/path/%C3%A4%C3%B6%C3%BC/", resource.getHref().getRawPath());
 		}
 		{
-			DavResource resource = new Builder("/Meine%20Anlagen").ofType("httpd/unix-directory").ofLength(0L).build();
+			DavResource resource = new Builder("/Meine%20Anlagen").ofType().ofLength(0L).build();
 			assertEquals("/Meine Anlagen", resource.getPath());
 			assertEquals("/Meine%20Anlagen", resource.getHref().getRawPath());
 		}

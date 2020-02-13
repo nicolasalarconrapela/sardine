@@ -43,7 +43,7 @@ import java.math.BigInteger;
 public class Limit {
 
     @XmlElement(required = true)
-    protected BigInteger nresults;
+    private BigInteger nresults;
 
     /**
      * Gets the value of the nresults property.

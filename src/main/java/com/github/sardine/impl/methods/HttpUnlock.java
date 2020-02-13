@@ -25,7 +25,7 @@ import org.apache.http.client.methods.HttpRequestBase;
  */
 public class HttpUnlock extends HttpRequestBase
 {
-	public static final String METHOD_NAME = "UNLOCK";
+	private static final String METHOD_NAME = "UNLOCK";
 
 	/**
 	 * @param url   The resource
@@ -44,7 +44,7 @@ public class HttpUnlock extends HttpRequestBase
 	 *              The lock token in the Lock-Token request header must identify a lock that contains the resource
 	 *              identified by Request-URI as a member.
 	 */
-	public HttpUnlock(URI url, String token)
+    private HttpUnlock(URI url, String token)
 	{
 		this.setURI(url);
 		this.setHeader(HttpHeaders.CONTENT_TYPE, "text/xml; charset=utf-8");

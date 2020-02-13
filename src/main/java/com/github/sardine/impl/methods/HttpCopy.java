@@ -27,9 +27,9 @@ import java.net.URI;
  */
 public class HttpCopy extends HttpRequestBase
 {
-	public static final String METHOD_NAME = "COPY";
+	private static final String METHOD_NAME = "COPY";
 
-	public HttpCopy(URI sourceUrl, URI destinationUrl, boolean overwrite)
+	private HttpCopy(URI sourceUrl, URI destinationUrl, boolean overwrite)
 	{
 		this.setHeader(HttpHeaders.DESTINATION, destinationUrl.toASCIIString());
 		this.setHeader(HttpHeaders.OVERWRITE, overwrite ? "T" : "F");

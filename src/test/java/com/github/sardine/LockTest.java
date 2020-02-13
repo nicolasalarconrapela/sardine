@@ -26,6 +26,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+@SuppressWarnings("FieldCanBeLocal")
 @Category(IntegrationTest.class)
 public class LockTest
 {
@@ -93,7 +94,7 @@ public class LockTest
             String result = sardine.refreshLock(url, lockToken, url);
 
             assertTrue(lockToken.startsWith("opaquelocktoken:"));
-            assertTrue(lockToken.equals(result));
+			assertEquals(lockToken, result);
 
             sardine.unlock(url, lockToken);
         }

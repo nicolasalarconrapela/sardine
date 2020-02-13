@@ -16,11 +16,13 @@
 
 package com.github.sardine.impl.io;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ByteCountInputStream extends FilterInputStream
+class ByteCountInputStream extends FilterInputStream
 {
 
 	private Long byteCount = 0L;
@@ -47,7 +49,7 @@ public class ByteCountInputStream extends FilterInputStream
 	}
 
 	@Override
-	public int read(byte[] b) throws IOException
+	public int read(@NotNull byte[] b) throws IOException
 	{
 		final int read = in.read(b);
 		byteCount += read == -1 ? 0 : read;
@@ -55,7 +57,7 @@ public class ByteCountInputStream extends FilterInputStream
 	}
 
 	@Override
-	public int read(byte[] b, int off, int len) throws IOException
+	public int read(@NotNull byte[] b, int off, int len) throws IOException
 	{
 		final int read = in.read(b, off, len);
 		byteCount += read == -1 ? 0 : read;

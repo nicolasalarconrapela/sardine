@@ -35,8 +35,7 @@ import static org.junit.Assert.*;
 public class MultiStatusResponseHandlerTest
 {
 	@Test
-	public void testGetMultistatusFailure() throws Exception
-	{
+	public void testGetMultistatusFailure() {
 		MultiStatusResponseHandler handler = new MultiStatusResponseHandler();
 		try
 		{
@@ -155,8 +154,7 @@ public class MultiStatusResponseHandlerTest
 	}
 
 	@Test
-	public void testNotWelformedAlfrescoResponse() throws Exception
-	{
+	public void testNotWelformedAlfrescoResponse() {
 		MultiStatusResponseHandler handler = new MultiStatusResponseHandler();
 		final String response = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
 				"<D:multistatus xmlns:D=\"DAV:\">" +

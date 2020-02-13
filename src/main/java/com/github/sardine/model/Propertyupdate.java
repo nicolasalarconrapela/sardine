@@ -76,7 +76,7 @@ public class Propertyupdate {
      */
     public List<Object> getRemoveOrSet() {
         if (removeOrSet == null) {
-            removeOrSet = new ArrayList<Object>();
+            removeOrSet = new ArrayList<>();
         }
         return this.removeOrSet;
     }

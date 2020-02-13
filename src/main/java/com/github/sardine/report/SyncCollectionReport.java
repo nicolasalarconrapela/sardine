@@ -79,7 +79,7 @@ public class SyncCollectionReport extends SardineReport<SyncCollectionReport.Res
 	public Result fromMultistatus(Multistatus multistatus)
 	{
 		List<Response> responses = multistatus.getResponse();
-		List<DavResource> resources = new ArrayList<DavResource>(responses.size());
+		List<DavResource> resources = new ArrayList<>(responses.size());
 		for (Response response : responses)
 		{
 			try

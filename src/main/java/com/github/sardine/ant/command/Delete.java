@@ -25,7 +25,7 @@ public class Delete extends Command
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void validateAttributes() throws Exception {
+	protected void validateAttributes() {
 		if (url == null)
 			throw new IllegalArgumentException("url must not be null");
 	}

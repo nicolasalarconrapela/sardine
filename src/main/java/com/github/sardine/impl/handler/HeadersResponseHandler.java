@@ -23,11 +23,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HeadersResponseHandler extends ValidatingResponseHandler<Map<String, String>> {
+class HeadersResponseHandler extends ValidatingResponseHandler<Map<String, String>> {
     @Override
     public Map<String, String> handleResponse(HttpResponse response) throws IOException {
         this.validateResponse(response);
-        Map<String, String> headers = new HashMap<String, String>();
+        Map<String, String> headers = new HashMap<>();
         for(Header h : response.getAllHeaders()) {
             headers.put(h.getName(), h.getValue());
         }

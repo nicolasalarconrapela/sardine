@@ -67,12 +67,12 @@ public final class SardineUtil
 	/**
 	 * Default namespace prefix
 	 */
-	public static final String DEFAULT_NAMESPACE_PREFIX = "d";
+	private static final String DEFAULT_NAMESPACE_PREFIX = "d";
 
 	/**
 	 * Default namespace URI
 	 */
-	public static final String DEFAULT_NAMESPACE_URI = "DAV:";
+	private static final String DEFAULT_NAMESPACE_URI = "DAV:";
 
 	/**
 	 * Reusable context for marshalling and unmarshalling
@@ -99,7 +99,7 @@ public final class SardineUtil
 	private static final List<ThreadLocal<SimpleDateFormat>> DATETIME_FORMATS;
 
 	static {
-		List<ThreadLocal<SimpleDateFormat>> l = new ArrayList<ThreadLocal<SimpleDateFormat>>(SUPPORTED_DATE_FORMATS.length);
+		List<ThreadLocal<SimpleDateFormat>> l = new ArrayList<>(SUPPORTED_DATE_FORMATS.length);
 		for (int i = 0; i<SUPPORTED_DATE_FORMATS.length; i++){
 			l.add(new ThreadLocal<SimpleDateFormat>());
 		}
@@ -192,10 +192,8 @@ public final class SardineUtil
 		catch (JAXBException e)
 		{
 			// Server does not return any valid WebDAV XML that matches our JAXB context
-			IOException failure = new IOException("Not a valid DAV response");
 			// Backward compatibility
-			failure.initCause(e);
-			throw failure;
+			throw new IOException("Not a valid DAV response", e);
 		}
 		finally
 		{
@@ -292,7 +290,7 @@ public final class SardineUtil
 		{
 			return Collections.emptyMap();
 		}
-		Map<QName, String> result = new HashMap<QName, String>(setProps.size());
+		Map<QName, String> result = new HashMap<>(setProps.size());
 		for (Map.Entry<String, String> entry : setProps.entrySet())
 		{
 			result.put(createQNameWithCustomNamespace(entry.getKey()), entry.getValue());
@@ -307,7 +305,7 @@ public final class SardineUtil
 		{
 			return Collections.emptyList();
 		}
-		List<QName> result = new ArrayList<QName>(removeProps.size());
+		List<QName> result = new ArrayList<>(removeProps.size());
 		for (String entry : removeProps)
 		{
 			result.add(createQNameWithCustomNamespace(entry));

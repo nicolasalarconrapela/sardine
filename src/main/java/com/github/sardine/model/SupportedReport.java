@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
 public class SupportedReport {
 
     @XmlElement(required = true)
-    protected Report report;
+    private Report report;
 
     /**
      * Gets the value of the report property.

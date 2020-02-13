@@ -21,7 +21,7 @@ public class Privilege {
 
 	public List<Object> getContent() {
 		if (content==null)
-			content = new ArrayList<Object>();
+			content = new ArrayList<>();
 		return content;
 	}
 

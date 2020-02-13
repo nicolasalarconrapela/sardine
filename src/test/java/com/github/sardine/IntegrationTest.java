@@ -14,5 +14,5 @@
 
 package com.github.sardine;
 
-public @interface IntegrationTest {
+@interface IntegrationTest {
 }

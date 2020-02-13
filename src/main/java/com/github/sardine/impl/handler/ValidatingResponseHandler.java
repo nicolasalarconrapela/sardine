@@ -28,7 +28,7 @@ import org.apache.http.client.ResponseHandler;
  * @param <T> return type of {@link ResponseHandler#handleResponse(HttpResponse)}.
  * @author mirko
  */
-public abstract class ValidatingResponseHandler<T> implements ResponseHandler<T>
+abstract class ValidatingResponseHandler<T> implements ResponseHandler<T>
 {
 	/**
 	 * Checks the response for a statuscode between {@link HttpStatus#SC_OK} and {@link HttpStatus#SC_MULTIPLE_CHOICES}
@@ -37,7 +37,7 @@ public abstract class ValidatingResponseHandler<T> implements ResponseHandler<T>
 	 * @param response to check
 	 * @throws SardineException when the status code is not acceptable.
 	 */
-	protected void validateResponse(HttpResponse response) throws SardineException
+    void validateResponse(HttpResponse response) throws SardineException
 	{
 		StatusLine statusLine = response.getStatusLine();
 		int statusCode = statusLine.getStatusCode();

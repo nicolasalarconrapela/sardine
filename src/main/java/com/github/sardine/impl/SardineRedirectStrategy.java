@@ -28,7 +28,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultRedirectStrategy;
 import org.apache.http.protocol.HttpContext;
 
-public class SardineRedirectStrategy extends DefaultRedirectStrategy {
+class SardineRedirectStrategy extends DefaultRedirectStrategy {
 
     @Override
     protected boolean isRedirectable(String method) {

@@ -144,6 +144,7 @@ import java.util.logging.Logger;
  *
  * @author jonstevens
  */
+@SuppressWarnings("SameParameterValue")
 public class SardineImpl implements Sardine
 {
 	private static final Logger log = Logger.getLogger(DavResource.class.getName());
@@ -153,18 +154,18 @@ public class SardineImpl implements Sardine
 	/**
 	 * HTTP client implementation
 	 */
-	protected CloseableHttpClient client;
+	private CloseableHttpClient client;
 
 	/**
 	 * HTTP client configuration
 	 */
-	private HttpClientBuilder builder;
+	private final HttpClientBuilder builder;
 
 	/**
 	 * Local context with authentication cache. Make sure the same context is used to execute
 	 * logically related requests.
 	 */
-	protected HttpClientContext context = HttpClientContext.create();
+	private final HttpClientContext context = HttpClientContext.create();
 
 	/**
 	 * Access resources with no authentication
@@ -253,7 +254,7 @@ public class SardineImpl implements Sardine
 		this.setCredentials(this.createDefaultCredentialsProvider(username, password, domain, workstation));
 	}
 
-	public void setCredentials(CredentialsProvider provider)
+	private void setCredentials(CredentialsProvider provider)
 	{
 		this.context.setCredentialsProvider(provider);
 		this.context.setAttribute(HttpClientContext.TARGET_AUTH_STATE, new AuthState());
@@ -358,7 +359,7 @@ public class SardineImpl implements Sardine
 		enablePreemptiveAuthentication(hostname, httpPort, httpsPort, Consts.ISO_8859_1);
 	}
 
-	public void enablePreemptiveAuthentication(String hostname, int httpPort, int httpsPort, Charset credentialsCharset)
+	private void enablePreemptiveAuthentication(String hostname, int httpPort, int httpsPort, Charset credentialsCharset)
 	{
 		AuthCache cache = this.context.getAuthCache();
 		if (cache == null)
@@ -452,14 +453,14 @@ public class SardineImpl implements Sardine
 		}
 	}
 
-	protected List<DavResource> propfind(String url, int depth, Propfind body) throws IOException
+	private List<DavResource> propfind(String url, int depth, Propfind body) throws IOException
 	{
 		HttpPropFind entity = new HttpPropFind(url);
 		entity.setDepth(depth < 0 ? "infinity" : Integer.toString(depth));
 		entity.setEntity(new StringEntity(SardineUtil.toXml(body), UTF_8));
 		Multistatus multistatus = this.execute(entity, new MultiStatusResponseHandler());
 		List<Response> responses = multistatus.getResponse();
-		List<DavResource> resources = new ArrayList<DavResource>(responses.size());
+		List<DavResource> resources = new ArrayList<>(responses.size());
 		for (Response response : responses)
 		{
 			try
@@ -491,7 +492,7 @@ public class SardineImpl implements Sardine
 		search.setEntity(new StringEntity(body, UTF_8));
 		Multistatus multistatus = this.execute(search, new MultiStatusResponseHandler());
 		List<Response> responses = multistatus.getResponse();
-		List<DavResource> resources = new ArrayList<DavResource>(responses.size());
+		List<DavResource> resources = new ArrayList<>(responses.size());
 		for (Response response : responses)
 		{
 			try
@@ -526,7 +527,7 @@ public class SardineImpl implements Sardine
 	@Override
 	public List<DavResource> patch(String url, Map<QName, String> setProps, List<QName> removeProps) throws IOException
 	{
-		List<Element> setPropsElements = new ArrayList<Element>();
+		List<Element> setPropsElements = new ArrayList<>();
 		for (Entry<QName, String> entry : setProps.entrySet())
 		{
 			Element element = SardineUtil.createElement(entry.getKey());
@@ -576,7 +577,7 @@ public class SardineImpl implements Sardine
 		entity.setEntity(new StringEntity(SardineUtil.toXml(body), UTF_8));
 		Multistatus multistatus = this.execute(entity, new MultiStatusResponseHandler());
 		List<Response> responses = multistatus.getResponse();
-		List<DavResource> resources = new ArrayList<DavResource>(responses.size());
+		List<DavResource> resources = new ArrayList<>(responses.size());
 		for (Response response : responses)
 		{
 			try
@@ -718,7 +719,7 @@ public class SardineImpl implements Sardine
 		}
 		else
 		{
-			List<DavPrincipal> collections = new ArrayList<DavPrincipal>();
+			List<DavPrincipal> collections = new ArrayList<>();
 			for (Response r : responses)
 			{
 				if (r.getPropstat() != null)
@@ -758,7 +759,7 @@ public class SardineImpl implements Sardine
 		}
 		else
 		{
-			List<String> collections = new ArrayList<String>();
+			List<String> collections = new ArrayList<>();
 			for (Response r : responses)
 			{
 				if (r.getPropstat() != null)
@@ -787,7 +788,7 @@ public class SardineImpl implements Sardine
 	@Override
 	public ContentLengthInputStream get(String url, Map<String, String> headers) throws IOException
 	{
-		List<Header> list = new ArrayList<Header>();
+		List<Header> list = new ArrayList<>();
 		for (Map.Entry<String, String> h : headers.entrySet())
 		{
 			list.add(new BasicHeader(h.getKey(), h.getValue()));
@@ -795,7 +796,7 @@ public class SardineImpl implements Sardine
 		return this.get(url, list);
 	}
 
-	public ContentLengthInputStream get(String url, List<Header> headers) throws IOException
+	private ContentLengthInputStream get(String url, List<Header> headers) throws IOException
 	{
 		HttpGet get = new HttpGet(url);
 		for (Header header : headers)
@@ -861,7 +862,7 @@ public class SardineImpl implements Sardine
 	@Override
 	public void put(String url, InputStream dataStream, Map<String, String> headers) throws IOException
 	{
-		List<Header> list = new ArrayList<Header>();
+		List<Header> list = new ArrayList<>();
 		for (Map.Entry<String, String> h : headers.entrySet())
 		{
 			list.add(new BasicHeader(h.getKey(), h.getValue()));
@@ -869,7 +870,7 @@ public class SardineImpl implements Sardine
 		this.put(url, dataStream, list);
 	}
 
-	public void put(String url, InputStream dataStream, List<Header> headers) throws IOException
+	private void put(String url, InputStream dataStream, List<Header> headers) throws IOException
 	{
 		// A length of -1 means "go until end of stream"
 		InputStreamEntity entity = new InputStreamEntity(dataStream, -1);
@@ -884,9 +885,9 @@ public class SardineImpl implements Sardine
 	 * @param contentType    Content Type header
 	 * @param expectContinue Add <code>Expect: continue</code> header
 	 */
-	public void put(String url, HttpEntity entity, String contentType, boolean expectContinue) throws IOException
+	private void put(String url, HttpEntity entity, String contentType, boolean expectContinue) throws IOException
 	{
-		List<Header> headers = new ArrayList<Header>();
+		List<Header> headers = new ArrayList<>();
 		if (contentType != null)
 		{
 			headers.add(new BasicHeader(HttpHeaders.CONTENT_TYPE, contentType));
@@ -905,12 +906,12 @@ public class SardineImpl implements Sardine
 	 * @param entity  The entity to read from
 	 * @param headers Headers to add to request
 	 */
-	public void put(String url, HttpEntity entity, List<Header> headers) throws IOException
+	private void put(String url, HttpEntity entity, List<Header> headers) throws IOException
 	{
 		this.put(url, entity, headers, new VoidResponseHandler());
 	}
 
-	public <T> T put(String url, HttpEntity entity, List<Header> headers, ResponseHandler<T> handler) throws IOException
+	private <T> void put(String url, HttpEntity entity, List<Header> headers, ResponseHandler<T> handler) throws IOException
 	{
 		HttpPut put = new HttpPut(url);
 		put.setEntity(entity);
@@ -924,7 +925,7 @@ public class SardineImpl implements Sardine
 		}
 		try
 		{
-			return this.execute(put, handler);
+			this.execute(put, handler);
 		}
 		catch (HttpResponseException e)
 		{
@@ -934,7 +935,8 @@ public class SardineImpl implements Sardine
 				put.removeHeaders(HTTP.EXPECT_DIRECTIVE);
 				if (entity.isRepeatable())
 				{
-					return this.execute(put, handler);
+					this.execute(put, handler);
+					return;
 				}
 			}
 			throw e;
@@ -1010,7 +1012,7 @@ public class SardineImpl implements Sardine
 	 * @param responseHandler Determines the return type.
 	 * @return parsed response
 	 */
-	protected <T> T execute(HttpRequestBase request, ResponseHandler<T> responseHandler)
+	private <T> T execute(HttpRequestBase request, ResponseHandler<T> responseHandler)
 			throws IOException
 	{
 		return execute(context, request, responseHandler);
@@ -1022,7 +1024,7 @@ public class SardineImpl implements Sardine
 	 * @param request Request to execute
 	 * @return The response to check the reply status code
 	 */
-	protected HttpResponse execute(HttpRequestBase request)
+	private HttpResponse execute(HttpRequestBase request)
 			throws IOException
 	{
 		return execute(context, request, null);
@@ -1036,7 +1038,7 @@ public class SardineImpl implements Sardine
 	 * @param <T> will return raw HttpResponse when responseHandler is null or value reslved using provided ResponseHandler instance
 	 * @return value resolved using response handler or raw HttpResponse when responseHandler is null
 	 */
-	protected <T> T execute(HttpClientContext context, HttpRequestBase request, ResponseHandler<T> responseHandler)
+	private <T> T execute(HttpClientContext context, HttpRequestBase request, ResponseHandler<T> responseHandler)
 			throws IOException
 	{
 		HttpContext requestLocalContext = new BasicHttpContext(context);
@@ -1079,7 +1081,7 @@ public class SardineImpl implements Sardine
 	 * @param selector    Proxy configuration or null
 	 * @param credentials Authentication credentials or null
 	 */
-	protected HttpClientBuilder configure(ProxySelector selector, CredentialsProvider credentials)
+	private HttpClientBuilder configure(ProxySelector selector, CredentialsProvider credentials)
 	{
 		Registry<ConnectionSocketFactory> schemeRegistry = this.createDefaultSchemeRegistry();
 		HttpClientConnectionManager cm = this.createDefaultConnectionManager(schemeRegistry);
@@ -1099,12 +1101,12 @@ public class SardineImpl implements Sardine
 				.setRoutePlanner(this.createDefaultRoutePlanner(this.createDefaultSchemePortResolver(), selector));
 	}
 
-	protected DefaultSchemePortResolver createDefaultSchemePortResolver()
+	private DefaultSchemePortResolver createDefaultSchemePortResolver()
 	{
 		return new DefaultSchemePortResolver();
 	}
 
-	protected SardineRedirectStrategy createDefaultRedirectStrategy()
+	private SardineRedirectStrategy createDefaultRedirectStrategy()
 	{
 		return new SardineRedirectStrategy();
 	}
@@ -1112,7 +1114,7 @@ public class SardineImpl implements Sardine
 	/**
 	 * Creates a new registry for default ports with socket factories.
 	 */
-	protected Registry<ConnectionSocketFactory> createDefaultSchemeRegistry()
+	private Registry<ConnectionSocketFactory> createDefaultSchemeRegistry()
 	{
 		return RegistryBuilder.<ConnectionSocketFactory>create()
 				.register("http", this.createDefaultSocketFactory())
@@ -1123,7 +1125,7 @@ public class SardineImpl implements Sardine
 	/**
 	 * @return Default socket factory
 	 */
-	protected ConnectionSocketFactory createDefaultSocketFactory()
+	private ConnectionSocketFactory createDefaultSocketFactory()
 	{
 		return PlainConnectionSocketFactory.getSocketFactory();
 	}
@@ -1131,7 +1133,7 @@ public class SardineImpl implements Sardine
 	/**
 	 * @return Default SSL socket factory
 	 */
-	protected ConnectionSocketFactory createDefaultSecureSocketFactory()
+	private ConnectionSocketFactory createDefaultSecureSocketFactory()
 	{
 		return SSLConnectionSocketFactory.getSocketFactory();
 	}
@@ -1142,7 +1144,7 @@ public class SardineImpl implements Sardine
 	 * @param schemeRegistry Protocol registry
 	 * @return Default connection manager
 	 */
-	protected HttpClientConnectionManager createDefaultConnectionManager(Registry<ConnectionSocketFactory> schemeRegistry)
+	private HttpClientConnectionManager createDefaultConnectionManager(Registry<ConnectionSocketFactory> schemeRegistry)
 	{
 		return new PoolingHttpClientConnectionManager(schemeRegistry);
 	}
@@ -1154,7 +1156,7 @@ public class SardineImpl implements Sardine
 	 * @param selector Proxy configuration
 	 * @return ProxySelectorRoutePlanner configured with schemeRegistry and selector
 	 */
-	protected HttpRoutePlanner createDefaultRoutePlanner(SchemePortResolver resolver, ProxySelector selector)
+	private HttpRoutePlanner createDefaultRoutePlanner(SchemePortResolver resolver, ProxySelector selector)
 	{
 		return new SystemDefaultRoutePlanner(resolver, selector);
 	}

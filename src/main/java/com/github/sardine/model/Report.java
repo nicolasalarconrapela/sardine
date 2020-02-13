@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Report {
 
     @XmlAnyElement
-    protected Element any;
+    private Element any;
 
     /**
      * Gets the value of the any property.

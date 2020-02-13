@@ -65,7 +65,7 @@ public class DavPrincipal
 		this(principalType, value, null, name);
 	}
 
-	protected DavPrincipal(PrincipalType principalType, String value, QName property, String name)
+	private DavPrincipal(PrincipalType principalType, String value, QName property, String name)
 	{
 		if (value != null && principalType == PrincipalType.PROPERTY)
 		{

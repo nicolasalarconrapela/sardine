@@ -12,7 +12,7 @@ public abstract class SardineReport<T>
 		return SardineUtil.toXml(toJaxb());
 	}
 
-	public abstract Object toJaxb();
+	protected abstract Object toJaxb();
 
 	public abstract T fromMultistatus(Multistatus multistatus);
 }

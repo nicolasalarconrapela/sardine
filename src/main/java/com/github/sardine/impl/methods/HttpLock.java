@@ -24,14 +24,14 @@ import java.net.URI;
  */
 public class HttpLock extends HttpEntityEnclosingRequestBase
 {
-	public static final String METHOD_NAME = "LOCK";
+	private static final String METHOD_NAME = "LOCK";
 
 	public HttpLock(String url)
 	{
 		this(URI.create(url));
 	}
 
-	public HttpLock(URI url)
+	private HttpLock(URI url)
 	{
 		this.setURI(url);
 		this.setHeader(HttpHeaders.CONTENT_TYPE, "text/xml; charset=utf-8");

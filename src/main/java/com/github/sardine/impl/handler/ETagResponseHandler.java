@@ -21,7 +21,7 @@ import org.apache.http.HttpResponse;
 
 import java.io.IOException;
 
-public class ETagResponseHandler extends ValidatingResponseHandler<String> {
+class ETagResponseHandler extends ValidatingResponseHandler<String> {
     @Override
     public String handleResponse(HttpResponse response) throws IOException {
         this.validateResponse(response);

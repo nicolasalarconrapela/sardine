@@ -58,12 +58,12 @@ import java.util.List;
 public class Response {
 
     @XmlElement(required = true)
-    protected List<String> href;
-    protected String status;
-    protected List<Propstat> propstat;
-    protected Error error;
-    protected String responsedescription;
-    protected Location location;
+    private List<String> href;
+    private String status;
+    private List<Propstat> propstat;
+    private Error error;
+    private String responsedescription;
+    private Location location;
 
     /**
      * Gets the value of the href property.
@@ -89,7 +89,7 @@ public class Response {
      */
     public List<String> getHref() {
         if (href == null) {
-            href = new ArrayList<String>();
+            href = new ArrayList<>();
         }
         return this.href;
     }
@@ -142,7 +142,7 @@ public class Response {
      */
     public List<Propstat> getPropstat() {
         if (propstat == null) {
-            propstat = new ArrayList<Propstat>();
+            propstat = new ArrayList<>();
         }
         return this.propstat;
     }

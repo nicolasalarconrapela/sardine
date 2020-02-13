@@ -1,7 +1,5 @@
 package com.github.sardine;
 
-import java.io.IOException;
-
 /**
  * Provides version information from the manifest.
  *
@@ -23,7 +21,7 @@ public class Version
 	/**
 	 * @return The <code>Implementation-Version</code> in the JAR manifest.
 	 */
-	public static String getImplementation()
+	private static String getImplementation()
 	{
 		Package pkg = Version.class.getPackage();
 		return (pkg == null) ? null : pkg.getImplementationVersion();
@@ -32,7 +30,7 @@ public class Version
 	/**
 	 * A simple main method that prints the version and exits
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		System.out.println("Version: " + getSpecification());
 		System.out.println("Implementation: " + getImplementation());
 	}

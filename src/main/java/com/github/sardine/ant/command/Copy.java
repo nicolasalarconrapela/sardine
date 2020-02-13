@@ -28,7 +28,7 @@ public class Copy extends Command
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void validateAttributes() throws Exception {
+	protected void validateAttributes() {
 		if (srcUrl == null || dstUrl == null)
 			throw new IllegalArgumentException("srcUrl and dstUrl must not be null");
 	}

@@ -50,13 +50,13 @@ public class DavResource
 	 * The default content-type if {@link Getcontenttype} is not set in
 	 * the {@link com.github.sardine.model.Multistatus} response.
 	 */
-	public static final String DEFAULT_CONTENT_TYPE = "application/octet-stream";
+	private static final String DEFAULT_CONTENT_TYPE = "application/octet-stream";
 
 	/**
 	 * The default content-length if {@link Getcontentlength} is not set in
 	 * the {@link com.github.sardine.model.Multistatus} response.
 	 */
-	public static final long DEFAULT_CONTENT_LENGTH = -1;
+	private static final long DEFAULT_CONTENT_LENGTH = -1;
 
 	/**
 	 * content-type for {@link com.github.sardine.model.Collection}.
@@ -67,7 +67,7 @@ public class DavResource
 	 * The default status code if {@link Response#getStatus} is not set in
 	 * the {@link com.github.sardine.model.Multistatus} response.
 	 */
-	public static final int DEFAULT_STATUS_CODE = HttpStatus.SC_OK;
+	private static final int DEFAULT_STATUS_CODE = HttpStatus.SC_OK;
 
 	/**
 	 * Path component seperator
@@ -399,7 +399,7 @@ public class DavResource
 		{
 			return Collections.emptyList();
 		}
-		List<QName> resourceTypes = new ArrayList<QName>();
+		List<QName> resourceTypes = new ArrayList<>();
 		for (Propstat propstat : list)
 		{
 			if (propstat.getProp() != null) {
@@ -437,7 +437,7 @@ public class DavResource
 		{
 			return Collections.emptyList();
 		}
-		List<QName> supportedReports = new ArrayList<QName>();
+		List<QName> supportedReports = new ArrayList<>();
 		for (Propstat propstat : list)
 		{
 			if (propstat.getProp() != null) {
@@ -472,7 +472,7 @@ public class DavResource
 		{
 			return null;
 		}
-		Map<QName, String> customPropsMap = new HashMap<QName, String>();
+		Map<QName, String> customPropsMap = new HashMap<>();
 		for (Propstat propstat : list)
 		{
 			if (propstat.getProp() != null) {
@@ -581,7 +581,7 @@ public class DavResource
 	 */
 	public Map<String, String> getCustomProps()
 	{
-		Map<String, String> local = new HashMap<String, String>();
+		Map<String, String> local = new HashMap<>();
 		Map<QName, String> properties = this.getCustomPropsNS();
 		for (QName key : properties.keySet())
 		{

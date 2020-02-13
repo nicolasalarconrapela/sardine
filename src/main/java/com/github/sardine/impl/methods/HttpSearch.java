@@ -14,14 +14,14 @@ import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 public class HttpSearch
 	extends HttpEntityEnclosingRequestBase
 {
-	public static final String METHOD_NAME = "SEARCH";
+	private static final String METHOD_NAME = "SEARCH";
 	
 	public HttpSearch(final String uri)
 	{
 		this(URI.create(uri));
 	}
 	
-	public HttpSearch(final URI uri)
+	private HttpSearch(final URI uri)
 	{
 		this.setURI(uri);
 		this.setHeader(HttpHeaders.CONTENT_TYPE, "text/xml; charset=utf-8");

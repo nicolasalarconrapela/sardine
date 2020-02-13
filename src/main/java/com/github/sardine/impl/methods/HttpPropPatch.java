@@ -27,14 +27,14 @@ import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
  */
 public class HttpPropPatch extends HttpEntityEnclosingRequestBase
 {
-	public static final String METHOD_NAME = "PROPPATCH";
+	private static final String METHOD_NAME = "PROPPATCH";
 
 	public HttpPropPatch(String url)
 	{
 		this(URI.create(url));
 	}
 
-	public HttpPropPatch(URI url)
+	private HttpPropPatch(URI url)
 	{
 		this.setURI(url);
 		this.setHeader(HttpHeaders.CONTENT_TYPE, "text/xml; charset=utf-8");

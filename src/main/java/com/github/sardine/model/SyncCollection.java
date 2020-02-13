@@ -50,12 +50,12 @@ public class SyncCollection {
 
     @XmlElement(name = "sync-token", required = true)
     @XmlSchemaType(name = "anyURI")
-    protected String syncToken;
+    private String syncToken;
     @XmlElement(name = "sync-level", required = true)
-    protected String syncLevel;
-    protected Limit limit;
+    private String syncLevel;
+    private Limit limit;
     @XmlElement(required = true)
-    protected Prop prop;
+    private Prop prop;
 
     /**
      * Gets the value of the syncToken property.

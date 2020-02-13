@@ -21,26 +21,26 @@ public class RecursiveGet extends Command {
 	/**
 	 * Webdav server url
 	 */
-	String serverUrl;
+	private String serverUrl;
 	/**
 	 * Remote directory path
 	 */
-	String remoteDirectory;
+	private String remoteDirectory;
 	/**
 	 * Local directory path
 	 */
-	String localDirectory;
+	private String localDirectory;
 
 	/**
 	 * true if existent local files will be overwritten; otherwise, false.
 	 */
-	boolean overwriteFiles = false;
+	private boolean overwriteFiles = false;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void validateAttributes() throws Exception {
+	protected void validateAttributes() {
 		StringBuilder sb = new StringBuilder();
 
 		if (serverUrl == null) {

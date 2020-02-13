@@ -20,6 +20,7 @@ package com.github.sardine.impl.io;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
@@ -27,7 +28,7 @@ import java.io.IOException;
 /**
  * Wrapper for the input stream, will consume the rest of the response on {@link ConsumingInputStream#close()}.
  */
-public class ConsumingInputStream extends FilterInputStream
+class ConsumingInputStream extends FilterInputStream
 {
 	private HttpEntity entity;
 
@@ -55,13 +56,13 @@ public class ConsumingInputStream extends FilterInputStream
 	}
 
 	@Override
-	public int read(byte[] b) throws IOException
+	public int read(@NotNull byte[] b) throws IOException
 	{
 		return in.read(b);
 	}
 
 	@Override
-	public int read(byte[] b, int off, int len) throws IOException
+	public int read(@NotNull byte[] b, int off, int len) throws IOException
 	{
 		return in.read(b, off, len);
 	}

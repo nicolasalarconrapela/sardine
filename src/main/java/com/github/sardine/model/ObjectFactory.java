@@ -468,7 +468,7 @@ public class ObjectFactory
 	 */
 	@XmlElementDecl(namespace = "DAV:", name = "timeout")
 	public JAXBElement<String> createTimeout(String value) {
-		return new JAXBElement<String>(_Timeout_QNAME, String.class, null, value);
+		return new JAXBElement<>(_Timeout_QNAME, String.class, null, value);
 	}
 
 	/**
@@ -477,7 +477,7 @@ public class ObjectFactory
 	 */
 	@XmlElementDecl(namespace = "DAV:", name = "sync-level")
 	public JAXBElement<String> createSyncLevel(String value) {
-		return new JAXBElement<String>(_SyncLevel_QNAME, String.class, null, value);
+		return new JAXBElement<>(_SyncLevel_QNAME, String.class, null, value);
 	}
 
 	/**
@@ -486,7 +486,7 @@ public class ObjectFactory
 	 */
 	@XmlElementDecl(namespace = "DAV:", name = "status")
 	public JAXBElement<String> createStatus(String value) {
-		return new JAXBElement<String>(_Status_QNAME, String.class, null, value);
+		return new JAXBElement<>(_Status_QNAME, String.class, null, value);
 	}
 
 	/**
@@ -495,7 +495,7 @@ public class ObjectFactory
 	 */
 	@XmlElementDecl(namespace = "DAV:", name = "responsedescription")
 	public JAXBElement<String> createResponsedescription(String value) {
-		return new JAXBElement<String>(_Responsedescription_QNAME, String.class, null, value);
+		return new JAXBElement<>(_Responsedescription_QNAME, String.class, null, value);
 	}
 
 	/**
@@ -504,7 +504,7 @@ public class ObjectFactory
 	 */
 	@XmlElementDecl(namespace = "DAV:", name = "href")
 	public JAXBElement<String> createHref(String value) {
-		return new JAXBElement<String>(_Href_QNAME, String.class, null, value);
+		return new JAXBElement<>(_Href_QNAME, String.class, null, value);
 	}
 
 	/**
@@ -513,7 +513,7 @@ public class ObjectFactory
 	 */
 	@XmlElementDecl(namespace = "DAV:", name = "sync-token")
 	public JAXBElement<String> createSyncToken(String value) {
-		return new JAXBElement<String>(_SyncToken_QNAME, String.class, null, value);
+		return new JAXBElement<>(_SyncToken_QNAME, String.class, null, value);
 	}
 
 	/**
@@ -522,7 +522,7 @@ public class ObjectFactory
 	 */
 	@XmlElementDecl(namespace = "DAV:", name = "dst")
 	public JAXBElement<String> createDst(String value) {
-		return new JAXBElement<String>(_Dst_QNAME, String.class, null, value);
+		return new JAXBElement<>(_Dst_QNAME, String.class, null, value);
 	}
 
 	/**
@@ -531,7 +531,7 @@ public class ObjectFactory
 	 */
 	@XmlElementDecl(namespace = "DAV:", name = "nresults")
 	public JAXBElement<BigInteger> createNresults(BigInteger value) {
-		return new JAXBElement<BigInteger>(_Nresults_QNAME, BigInteger.class, null, value);
+		return new JAXBElement<>(_Nresults_QNAME, BigInteger.class, null, value);
 	}
 
 	/**
@@ -540,7 +540,7 @@ public class ObjectFactory
 	 */
 	@XmlElementDecl(namespace = "DAV:", name = "src")
 	public JAXBElement<String> createSrc(String value) {
-		return new JAXBElement<String>(_Src_QNAME, String.class, null, value);
+		return new JAXBElement<>(_Src_QNAME, String.class, null, value);
 	}
 
 	/**
@@ -549,7 +549,7 @@ public class ObjectFactory
 	 */
 	@XmlElementDecl(namespace = "DAV:", name = "depth")
 	public JAXBElement<String> createDepth(String value) {
-		return new JAXBElement<String>(_Depth_QNAME, String.class, null, value);
+		return new JAXBElement<>(_Depth_QNAME, String.class, null, value);
 	}
 
 }

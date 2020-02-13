@@ -37,11 +37,10 @@ public class HttpReport extends HttpEntityEnclosingRequestBase
 	 * A client may submit a Depth header with a value of "0", "1", or "infinity" with
 	 * a {@link com.github.sardine.model.Propfind} on a collection resource with internal member URIs.
 	 *
-	 * @param depth <code>"0"</code>, <code>"1"</code> or <code>"infinity"</code>.
-	 */
-	public HttpReport setDepth(String depth)
+     * @param depth <code>"0"</code>, <code>"1"</code> or <code>"infinity"</code>.
+     */
+	public void setDepth(String depth)
 	{
 		this.setHeader(HttpHeaders.DEPTH, depth);
-		return this;
-	}
+    }
 }

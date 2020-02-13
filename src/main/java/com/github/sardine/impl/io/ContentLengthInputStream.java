@@ -17,6 +17,7 @@
 package com.github.sardine.impl.io;
 
 import org.apache.http.HttpResponse;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
@@ -51,13 +52,13 @@ public class ContentLengthInputStream extends FilterInputStream
 	}
 
 	@Override
-	public int read(byte[] b) throws IOException
+	public int read(@NotNull byte[] b) throws IOException
 	{
 		return in.read(b);
 	}
 
 	@Override
-	public int read(byte[] b, int off, int len) throws IOException
+	public int read(@NotNull byte[] b, int off, int len) throws IOException
 	{
 		return in.read(b, off, len);
 	}

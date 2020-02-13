@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Location {
 
     @XmlElement(required = true)
-    protected String href;
+    private String href;
 
     /**
      * Gets the value of the href property.

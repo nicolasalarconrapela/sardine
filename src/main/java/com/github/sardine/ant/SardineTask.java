@@ -19,10 +19,10 @@ import java.util.List;
  *
  * @author jonstevens
  */
-public class SardineTask extends Task
+class SardineTask extends Task
 {
 	/** Commands. */
-	private List<Command> commands = new ArrayList<Command>();
+	private final List<Command> commands = new ArrayList<>();
 
 	/** Attribute failOnError. */
 	private boolean failOnError = false;

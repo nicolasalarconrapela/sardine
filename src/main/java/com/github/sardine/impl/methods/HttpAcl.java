@@ -26,7 +26,7 @@ import java.net.URI;
  */
 public class HttpAcl extends HttpEntityEnclosingRequestBase
 {
-	public static final String METHOD_NAME = "ACL";
+	private static final String METHOD_NAME = "ACL";
 
 	public HttpAcl(final String uri)
 	{
@@ -36,7 +36,7 @@ public class HttpAcl extends HttpEntityEnclosingRequestBase
 	/**
 	 * @param uri The resource
 	 */
-	public HttpAcl(final URI uri)
+    private HttpAcl(final URI uri)
 	{
 		this.setURI(uri);
 		this.setHeader(HttpHeaders.CONTENT_TYPE, "text/xml; charset=utf-8");

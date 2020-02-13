@@ -15,7 +15,6 @@ public class ByteCountInputStreamTest
 		final ByteCountInputStream in = new ByteCountInputStream(new ByteArrayInputStream(new byte[2]));
 		in.read();
 		assertEquals(1, in.getByteCount(), 0L);
-		in.read(new byte[2]);
 	}
 
 	@Test

@@ -27,9 +27,9 @@ import java.net.URI;
  */
 public class HttpMove extends HttpRequestBase
 {
-	public static final String METHOD_NAME = "MOVE";
+	private static final String METHOD_NAME = "MOVE";
 
-	public HttpMove(URI sourceUrl, URI destinationUrl, boolean overwrite)
+	private HttpMove(URI sourceUrl, URI destinationUrl, boolean overwrite)
 	{
 		this.setHeader(HttpHeaders.DESTINATION, destinationUrl.toASCIIString());
 		this.setHeader(HttpHeaders.OVERWRITE, overwrite ? "T" : "F");

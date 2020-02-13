@@ -57,24 +57,24 @@ import java.util.List;
 @XmlRootElement(name = "prop")
 public class Prop {
 
-    protected Creationdate creationdate;
-    protected Displayname displayname;
-    protected Getcontentlanguage getcontentlanguage;
-    protected Getcontentlength getcontentlength;
-    protected Getcontenttype getcontenttype;
-    protected Getetag getetag;
-    protected Getlastmodified getlastmodified;
-    protected Lockdiscovery lockdiscovery;
-    protected Resourcetype resourcetype;
-    protected Supportedlock supportedlock;
+    private Creationdate creationdate;
+    private Displayname displayname;
+    private Getcontentlanguage getcontentlanguage;
+    private Getcontentlength getcontentlength;
+    private Getcontenttype getcontenttype;
+    private Getetag getetag;
+    private Getlastmodified getlastmodified;
+    private Lockdiscovery lockdiscovery;
+    private Resourcetype resourcetype;
+    private Supportedlock supportedlock;
     @XmlElement(name = "supported-report-set")
-    protected SupportedReportSet supportedReportSet;
+    private SupportedReportSet supportedReportSet;
     @XmlElement(name = "quota-available-bytes")
-    protected QuotaAvailableBytes quotaAvailableBytes;
+    private QuotaAvailableBytes quotaAvailableBytes;
     @XmlElement(name = "quota-used-bytes")
-    protected QuotaUsedBytes quotaUsedBytes;
+    private QuotaUsedBytes quotaUsedBytes;
     @XmlAnyElement
-    protected List<Element> any;
+    private List<Element> any;
 
     //ACL elements
     private Owner owner;
@@ -422,7 +422,7 @@ public class Prop {
      */
     public List<Element> getAny() {
         if (any == null) {
-            any = new ArrayList<Element>();
+            any = new ArrayList<>();
         }
         return this.any;
     }

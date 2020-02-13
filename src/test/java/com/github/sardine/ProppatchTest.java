@@ -49,7 +49,7 @@ public class ProppatchTest
 		sardine.put(url, new byte[]{});
 		try
 		{
-			HashMap<QName, String> patch = new HashMap<QName, String>();
+			HashMap<QName, String> patch = new HashMap<>();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
 			Calendar now = Calendar.getInstance();
 			now.set(2010, Calendar.MAY, 1);
@@ -79,7 +79,7 @@ public class ProppatchTest
 		sardine.put(url, new byte[]{});
 		try
 		{
-			HashMap<QName, String> patch = new HashMap<QName, String>();
+			HashMap<QName, String> patch = new HashMap<>();
 			patch.put(SardineUtil.createQNameWithCustomNamespace("fish"), "sardine");
 			{
 				List<DavResource> resources = sardine.patch(url, patch);
@@ -131,11 +131,11 @@ public class ProppatchTest
 			Element fish = SardineUtil.createElement(fishName);
 			fish.setTextContent("sardine");
 
-			List<Element> addProps = new ArrayList<Element>();
+			List<Element> addProps = new ArrayList<>();
 			addProps.add(authorsElement);
 			addProps.add(fish);
 			
-			Set<QName> qnames = new HashSet<QName>();
+			Set<QName> qnames = new HashSet<>();
 			qnames.add(authorsName);
 			qnames.add(fishName);
 			{
@@ -171,7 +171,7 @@ public class ProppatchTest
 		sardine.put(url, new byte[]{});
 		try
 		{
-			HashMap<QName, String> patch = new HashMap<QName, String>();
+			HashMap<QName, String> patch = new HashMap<>();
 			QName property = SardineUtil.createQNameWithCustomNamespace("fish");
 			patch.put(property, "sardine");
 			{

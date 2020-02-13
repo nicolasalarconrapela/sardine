@@ -7,10 +7,10 @@ import org.junit.rules.ExpectedException;
 public class RecursiveGetTest {
 
 	@Rule
-	public ExpectedException thrown = ExpectedException.none();
+	public final ExpectedException thrown = ExpectedException.none();
 
 	@Test
-	public void testThatArgumentsAreValidated() throws Exception {
+	public void testThatArgumentsAreValidated() {
 		RecursiveGet get = new RecursiveGet();
 
 		thrown.expect(IllegalArgumentException.class);

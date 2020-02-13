@@ -57,7 +57,7 @@ public class DavQuota
 				{
 					continue;
 				}
-				return Long.valueOf(prop.getQuotaAvailableBytes().getContent().get(0));
+				return Long.parseLong(prop.getQuotaAvailableBytes().getContent().get(0));
 			}
 			return Long.MAX_VALUE;
 		}
@@ -84,7 +84,7 @@ public class DavQuota
 				{
 					continue;
 				}
-				return Long.valueOf(prop.getQuotaUsedBytes().getContent().get(0));
+				return Long.parseLong(prop.getQuotaUsedBytes().getContent().get(0));
 			}
 			return 0L;
 		}

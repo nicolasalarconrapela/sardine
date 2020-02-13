@@ -32,6 +32,7 @@ import java.util.List;
  *
  * @author David Delbecq
  */
+@SuppressWarnings("Convert2Diamond")
 public class DavAce
 {
 	/**
@@ -92,8 +93,8 @@ public class DavAce
 	{
 		principal = new DavPrincipal(ace.getPrincipal());
 
-		granted = new ArrayList<String>();
-		denied = new ArrayList<String>();
+		granted = new ArrayList<>();
+		denied = new ArrayList<>();
 		if (ace.getGrant() != null)
 		{
 			for (Privilege p : ace.getGrant().getPrivilege())
@@ -203,7 +204,7 @@ public class DavAce
 
 	private List<Privilege> toPrivilege(List<String> rights)
 	{
-		List<Privilege> privileges = new ArrayList<Privilege>();
+		List<Privilege> privileges = new ArrayList<>();
 		for (String right : rights)
 		{
 			Privilege p = new Privilege();

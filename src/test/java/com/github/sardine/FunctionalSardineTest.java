@@ -22,7 +22,6 @@ import com.github.sardine.impl.SardineException;
 import com.github.sardine.impl.SardineImpl;
 import com.github.sardine.util.SardineUtil;
 import org.apache.http.HttpClientConnection;
-import org.apache.http.HttpException;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
@@ -43,7 +42,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.ProxySelector;
-import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -80,8 +79,7 @@ public class FunctionalSardineTest
 		final HttpClientBuilder builder = HttpClientBuilder.create();
 		builder.addInterceptorFirst(new HttpResponseInterceptor()
 		{
-			public void process(final HttpResponse r, final HttpContext context) throws HttpException, IOException
-			{
+			public void process(final HttpResponse r, final HttpContext context) {
 				if (r.getStatusLine().getStatusCode() == 200) {
 					intercept.set(true);
 					assertNotNull(r.getHeaders(HttpHeaders.CONTENT_ENCODING));
@@ -157,7 +155,7 @@ public class FunctionalSardineTest
 		final String url = String.format("http://test.cyberduck.ch/dav/anon/sardine/%s", UUID.randomUUID().toString());
 		try
 		{
-			final byte[] content = "sa".getBytes("UTF-8");
+			final byte[] content = "sa".getBytes(StandardCharsets.UTF_8);
 			assertEquals(2, content.length);
 			sardine.put(url, new ByteArrayInputStream(content));
 			final InputStream in = sardine.get(url);
@@ -190,7 +188,7 @@ public class FunctionalSardineTest
 		final String url = String.format("http://test.cyberduck.ch/dav/anon/sardine/%s", UUID.randomUUID().toString());
 		try
 		{
-			final byte[] content = "sa".getBytes("UTF-8");
+			final byte[] content = "sa".getBytes(StandardCharsets.UTF_8);
 			assertEquals(2, content.length);
 			sardine.put(url, new ByteArrayInputStream(content));
 			final InputStream in = sardine.get(url);
@@ -254,7 +252,7 @@ public class FunctionalSardineTest
 		try
 		{
 			sardine.createDirectory(url);
-			List<DavAce> aces = new ArrayList<DavAce>();
+			List<DavAce> aces = new ArrayList<>();
 			sardine.setAcl(url, aces);
 			DavAcl acls = sardine.getAcl(url);
 			for (DavAce davace : acls.getAces())
@@ -305,8 +303,7 @@ public class FunctionalSardineTest
 	}
 
 	@Test
-	public void testDavPrincipals() throws IOException, URISyntaxException
-	{
+	public void testDavPrincipals() throws IOException {
 		final String url = String.format("http://test.cyberduck.ch/dav/anon/sardine/%s/", UUID.randomUUID().toString());
 		Sardine sardine = SardineFactory.begin();
 		try
@@ -332,8 +329,7 @@ public class FunctionalSardineTest
 		final HttpClientBuilder client = HttpClientBuilder.create();
 		client.addInterceptorFirst(new HttpResponseInterceptor()
 		{
-			public void process(final HttpResponse r, final HttpContext context) throws HttpException, IOException
-			{
+			public void process(final HttpResponse r, final HttpContext context) {
 				if (r.getStatusLine().getStatusCode() == 201) {
 					intercept.set(true);
 				}
@@ -342,7 +338,7 @@ public class FunctionalSardineTest
 		Sardine sardine = new SardineImpl(client);
 		// mod_dav supports Range headers for PUT
 		final String url = "http://test.cyberduck.ch/dav/anon/sardine/" + UUID.randomUUID().toString();
-		sardine.put(url, new ByteArrayInputStream("Te".getBytes("UTF-8")));
+		sardine.put(url, new ByteArrayInputStream("Te".getBytes(StandardCharsets.UTF_8)));
 		try
 		{
 			// Append to existing file
@@ -351,22 +347,20 @@ public class FunctionalSardineTest
 
 			client.addInterceptorFirst(new HttpRequestInterceptor()
 			{
-				public void process(final HttpRequest r, final HttpContext context) throws HttpException, IOException
-				{
+				public void process(final HttpRequest r, final HttpContext context) {
 					assertNotNull(r.getHeaders(HttpHeaders.CONTENT_RANGE));
 					assertEquals(1, r.getHeaders(HttpHeaders.CONTENT_RANGE).length);
 				}
 			});
 			client.addInterceptorFirst(new HttpResponseInterceptor()
 			{
-				public void process(final HttpResponse r, final HttpContext context) throws HttpException, IOException
-				{
+				public void process(final HttpResponse r, final HttpContext context) {
 					assertEquals(204, r.getStatusLine().getStatusCode());
 				}
 			});
-			sardine.put(url, new ByteArrayInputStream("st".getBytes("UTF-8")), header);
+			sardine.put(url, new ByteArrayInputStream("st".getBytes(StandardCharsets.UTF_8)), header);
 
-			assertEquals("Test", new BufferedReader(new InputStreamReader(sardine.get(url), "UTF-8")).readLine());
+			assertEquals("Test", new BufferedReader(new InputStreamReader(sardine.get(url), StandardCharsets.UTF_8)).readLine());
 
 			assertTrue(intercept.get());
 		}
@@ -383,8 +377,7 @@ public class FunctionalSardineTest
 		final HttpClientBuilder builder = HttpClientBuilder.create();
 		builder.addInterceptorFirst(new HttpResponseInterceptor()
 		{
-			public void process(final HttpResponse r, final HttpContext context) throws HttpException, IOException
-			{
+			public void process(final HttpResponse r, final HttpContext context) {
 				if (r.getStatusLine().getStatusCode() == 206) {
 					intercept.set(true);
 					// Verify partial content response
@@ -396,7 +389,7 @@ public class FunctionalSardineTest
 		Sardine sardine = new SardineImpl(builder);
 		// mod_dav supports Range headers for GET
 		final String url = String.format("http://test.cyberduck.ch/dav/anon/sardine/%s", UUID.randomUUID().toString());
-		sardine.put(url, new ByteArrayInputStream("Te".getBytes("UTF-8")));
+		sardine.put(url, new ByteArrayInputStream("Te".getBytes(StandardCharsets.UTF_8)));
 		try
 		{
 			// Resume
@@ -422,8 +415,7 @@ public class FunctionalSardineTest
 			sardine.put(url, new InputStream()
 			{
 				@Override
-				public int read() throws IOException
-				{
+				public int read() {
 					fail("Expected authentication to fail without sending any body");
 					return -1;
 				}
@@ -479,7 +471,7 @@ public class FunctionalSardineTest
 		try
 		{
 			assertTrue(sardine.exists(url));
-			assertEquals("Test", new BufferedReader(new InputStreamReader(sardine.get(url), "UTF-8")).readLine());
+			assertEquals("Test", new BufferedReader(new InputStreamReader(sardine.get(url), StandardCharsets.UTF_8)).readLine());
 		}
 		finally
 		{
@@ -693,10 +685,10 @@ public class FunctionalSardineTest
 		Sardine sardine = SardineFactory.begin();
 		try
 		{
-			sardine.put(url, "Hello".getBytes("UTF-8"), "text/plain");
+			sardine.put(url, "Hello".getBytes(StandardCharsets.UTF_8), "text/plain");
 
 			// 2Setup some custom properties, with custom namespaces
-			Map<QName, String> newProps = new HashMap<QName, String>();
+			Map<QName, String> newProps = new HashMap<>();
 			newProps.put(new QName("http://my.namespace.com", "mykey", "ns1"), "myvalue");
 			newProps.put(new QName(SardineUtil.CUSTOM_NAMESPACE_URI,
 					"mykey",
@@ -716,7 +708,7 @@ public class FunctionalSardineTest
 			}
 
 			// 4 check i can properly delete some of those added properties
-			List<QName> removeProps = new ArrayList<QName>();
+			List<QName> removeProps = new ArrayList<>();
 			removeProps.add(new QName("http://my.namespace.com", "mykey", "ns1"));
 			sardine.patch(url, Collections.<QName, String>emptyMap(), removeProps);
 

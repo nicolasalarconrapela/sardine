@@ -35,7 +35,7 @@ public class DavAcl
 	/**
 	 *
 	 */
-	private List<DavAce> aces;
+	private final List<DavAce> aces;
 
 	public DavAcl(Response response)
 	{
@@ -107,7 +107,7 @@ public class DavAcl
 
 	private List<DavAce> getAces(Response response)
 	{
-		ArrayList<DavAce> result = new ArrayList<DavAce>();
+		ArrayList<DavAce> result = new ArrayList<>();
 		List<Propstat> list = response.getPropstat();
 		if (list.isEmpty())
 		{
