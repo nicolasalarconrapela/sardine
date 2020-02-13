@@ -83,16 +83,13 @@ public class RecursiveGet extends Command {
 				log("downloading " + filePathRelativeToRemoteDirectory + " to " + localFilePath);
 
 				String remoteFileUrl = new URI(serverUrl + '/').resolve(davResource.getPath()).toString();
-				InputStream ioStream = getSardine().get(remoteFileUrl);
-				try {
+				try (InputStream ioStream = getSardine().get(remoteFileUrl)) {
 					if (overwriteFiles) {
 						Files.copy(ioStream, localFilePath, StandardCopyOption.REPLACE_EXISTING);
 					} else {
 						Files.copy(ioStream, localFilePath);
 					}
 
-				} finally {
-					ioStream.close();
 				}
 			}
 		}

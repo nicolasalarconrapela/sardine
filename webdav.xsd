@@ -30,9 +30,9 @@
                 <element ref="dav:lockscope"/>
                 <element ref="dav:locktype"/>
                 <element ref="dav:depth"/>
-                <element ref="dav:owner" minOccurs="0" maxOccurs="1"/>
-                <element ref="dav:timeout" minOccurs="0" maxOccurs="1"/>
-                <element ref="dav:locktoken" minOccurs="0" maxOccurs="1"/>
+                <element ref="dav:owner" minOccurs="0"/>
+                <element ref="dav:timeout" minOccurs="0"/>
+                <element ref="dav:locktoken" minOccurs="0"/>
             </sequence>
         </complexType>
     </element>
@@ -51,7 +51,7 @@
             <sequence>
                 <element ref="dav:lockscope"/>
                 <element ref="dav:locktype"/>
-                <element ref="dav:owner" minOccurs="0" maxOccurs="1"/>
+                <element ref="dav:owner" minOccurs="0"/>
             </sequence>
         </complexType>
     </element>
@@ -124,8 +124,8 @@
         <complexType>
             <sequence>
                 <element ref="dav:response" maxOccurs="unbounded"/>
-                <element ref="dav:responsedescription" minOccurs="0" maxOccurs="1"/>
-                <element ref="dav:sync-token" minOccurs="0" maxOccurs="1"/>
+                <element ref="dav:responsedescription" minOccurs="0"/>
+                <element ref="dav:sync-token" minOccurs="0"/>
             </sequence>
         </complexType>
     </element>
@@ -133,16 +133,16 @@
     <element name="response">
         <complexType>
             <sequence>
-                <element ref="dav:href" minOccurs="1" maxOccurs="unbounded"/>
+                <element ref="dav:href" maxOccurs="unbounded"/>
                 <choice>
                     <sequence>
                         <element ref="dav:status"/>
                     </sequence>
                     <element ref="dav:propstat" maxOccurs="unbounded"/>
                 </choice>
-                <element ref="dav:error" minOccurs="0" maxOccurs="1"/>
-                <element ref="dav:responsedescription" minOccurs="0" maxOccurs="1"/>
-                <element ref="dav:location" minOccurs="0" maxOccurs="1"/>
+                <element ref="dav:error" minOccurs="0"/>
+                <element ref="dav:responsedescription" minOccurs="0"/>
+                <element ref="dav:location" minOccurs="0"/>
             </sequence>
         </complexType>
     </element>
@@ -152,7 +152,7 @@
     <element name="error">
         <complexType>
             <sequence>
-                <any namespace="##any"/>
+                <any/>
             </sequence>
         </complexType>
     </element>
@@ -162,8 +162,8 @@
             <sequence>
                 <element ref="dav:prop"/>
                 <element ref="dav:status"/>
-                <element ref="dav:error" minOccurs="0" maxOccurs="1"/>
-                <element ref="dav:responsedescription" minOccurs="0" maxOccurs="1"/>
+                <element ref="dav:error" minOccurs="0"/>
+                <element ref="dav:responsedescription" minOccurs="0"/>
             </sequence>
         </complexType>
     </element>
@@ -173,7 +173,7 @@
     <element name="location">
         <complexType>
             <sequence>
-                <element ref="dav:href" maxOccurs="1"/>
+                <element ref="dav:href"/>
             </sequence>
         </complexType>
     </element>
@@ -371,7 +371,7 @@
     <element name="searchrequest">
         <complexType>
             <sequence>
-                <any processContents="skip" namespace="##other" minOccurs="1" maxOccurs="1" />
+                <any processContents="skip" namespace="##other"/>
             </sequence>
         </complexType>
     </element>
@@ -395,7 +395,7 @@
     <element name="report">
         <complexType>
             <sequence>
-                <any processContents="skip" namespace="##other" minOccurs="1" maxOccurs="1"/>
+                <any processContents="skip" namespace="##other"/>
             </sequence>
         </complexType>
     </element>
@@ -403,10 +403,10 @@
     <element name="sync-collection">
         <complexType>
             <sequence>
-                <element ref="dav:sync-token" minOccurs="1" maxOccurs="1"/>
-                <element ref="dav:sync-level" minOccurs="1" maxOccurs="1"/>
-                <element ref="dav:limit" minOccurs="0" maxOccurs="1"/>
-                <element ref="dav:prop" minOccurs="1" maxOccurs="1"/>
+                <element ref="dav:sync-token"/>
+                <element ref="dav:sync-level"/>
+                <element ref="dav:limit" minOccurs="0"/>
+                <element ref="dav:prop"/>
             </sequence>
         </complexType>
     </element>
@@ -425,7 +425,7 @@
     <element name="limit">
         <complexType>
             <sequence>
-                <element ref="dav:nresults" minOccurs="1" maxOccurs="1"/>
+                <element ref="dav:nresults"/>
             </sequence>
         </complexType>
     </element>

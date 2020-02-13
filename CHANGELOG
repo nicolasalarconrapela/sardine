@@ -14,6 +14,10 @@
     * POM.xml
         * 5.11 => Upd.
         * Fixed dependencias que no existian ( @latest por defecto)
-* V.0.0.1d
+* V.0.0.1D
     * POM.xml
         * Upd. versiones => Fixed test 'testMessage'
+* V.0.0.1E
+    * Fixed 'ERRORS'
+        * Migracion a version7
+        * Otros cambios de pom.xml
