@@ -14,3 +14,6 @@
     * POM.xml
         * 5.11 => Upd.
         * Fixed dependencias que no existian ( @latest por defecto)
+* V.0.0.1d
+    * POM.xml
+        * Upd. versiones => Fixed test 'testMessage'

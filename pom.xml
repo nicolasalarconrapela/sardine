@@ -174,26 +174,26 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.1</version>
+            <version>4.5.11</version>
         </dependency>
         <!-- ant and junit must be defined as provided for a successful compile. -->
         <dependency>
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
-            <version>1.9.4</version>
+            <version>1.10.7</version>
             <scope>provided</scope>
         </dependency>
         <!-- test utilities -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
+            <version>2.0.2-beta</version>
             <scope>test</scope>
         </dependency>
         <!--@since 5.11-->
