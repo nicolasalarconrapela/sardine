@@ -103,7 +103,7 @@ public class Put extends Command {
 	 * @param dir to check for and create if it does not yet exist
 	 * @param createdDirs a cache for already created directories which saves several
 	 *        {@link Sardine#exists(String)} calls
-	 * @throws IOException
+	 * @throws IOException TODO
 	 */
 	private void checkOrCreateDir(URL baseUrl, File dir, Set<URL> createdDirs) throws IOException {
 		if (dir != null) {

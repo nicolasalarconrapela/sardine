@@ -554,10 +554,7 @@ public class SardineImpl implements Sardine
 			Prop prop = new Prop();
 			// Returns a reference to the live list
 			List<Element> any = prop.getAny();
-			for (Element element : setProps)
-			{
-				any.add(element);
-			}
+			any.addAll(setProps);
 			set.setProp(prop);
 		}
 		// Remove properties

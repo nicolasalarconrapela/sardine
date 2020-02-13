@@ -155,7 +155,7 @@ public final class SardineUtil
 			}
 			catch (SAXException e)
 			{
-				; //Not all parsers will support this attribute
+				//Not all parsers will support this attribute
 			}
 			try
 			{
@@ -164,7 +164,7 @@ public final class SardineUtil
 			}
 			catch (SAXException e)
 			{
-				; //Not all parsers will support this attribute
+				//Not all parsers will support this attribute
 			}
 			try
 			{
@@ -173,7 +173,7 @@ public final class SardineUtil
 			}
 			catch (SAXException e)
 			{
-				; //Not all parsers will support this attribute
+				//Not all parsers will support this attribute
 			}
 			try
 			{
@@ -181,7 +181,7 @@ public final class SardineUtil
 			}
 			catch (SAXException e)
 			{
-				; //Not all parsers will support this attribute
+				//Not all parsers will support this attribute
 			}
 			return (T) unmarshaller.unmarshal(new SAXSource(reader, new InputSource(in)));
 		}

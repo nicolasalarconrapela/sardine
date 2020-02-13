@@ -82,13 +82,11 @@ public class FunctionalSardineTest
 		{
 			public void process(final HttpResponse r, final HttpContext context) throws HttpException, IOException
 			{
-				switch (r.getStatusLine().getStatusCode())
-				{
-					case 200:
-						intercept.set(true);
-						assertNotNull(r.getHeaders(HttpHeaders.CONTENT_ENCODING));
-						assertEquals(1, r.getHeaders(HttpHeaders.CONTENT_ENCODING).length);
-						assertEquals("gzip", r.getHeaders(HttpHeaders.CONTENT_ENCODING)[0].getValue());
+				if (r.getStatusLine().getStatusCode() == 200) {
+					intercept.set(true);
+					assertNotNull(r.getHeaders(HttpHeaders.CONTENT_ENCODING));
+					assertEquals(1, r.getHeaders(HttpHeaders.CONTENT_ENCODING).length);
+					assertEquals("gzip", r.getHeaders(HttpHeaders.CONTENT_ENCODING)[0].getValue());
 				}
 			}
 		});
@@ -137,16 +135,14 @@ public class FunctionalSardineTest
 				switch ((int) c.getCount())
 				{
 					case 3:
+					case 1:
+						// DELETE
 						// PUT
 						assertTrue(conn.isOpen());
 						break;
 					case 2:
 						// GET
 						assertFalse(conn.isOpen());
-						break;
-					case 1:
-						// DELETE
-						assertTrue(conn.isOpen());
 						break;
 					default:
 						fail();
@@ -338,10 +334,8 @@ public class FunctionalSardineTest
 		{
 			public void process(final HttpResponse r, final HttpContext context) throws HttpException, IOException
 			{
-				switch (r.getStatusLine().getStatusCode())
-				{
-					case 201:
-						intercept.set(true);
+				if (r.getStatusLine().getStatusCode() == 201) {
+					intercept.set(true);
 				}
 			}
 		});
@@ -391,15 +385,11 @@ public class FunctionalSardineTest
 		{
 			public void process(final HttpResponse r, final HttpContext context) throws HttpException, IOException
 			{
-				switch (r.getStatusLine().getStatusCode())
-				{
-					case 206:
-						intercept.set(true);
-						// Verify partial content response
-						assertNotNull(r.getHeaders(HttpHeaders.CONTENT_RANGE));
-						assertEquals(1, r.getHeaders(HttpHeaders.CONTENT_RANGE).length);
-						break;
-
+				if (r.getStatusLine().getStatusCode() == 206) {
+					intercept.set(true);
+					// Verify partial content response
+					assertNotNull(r.getHeaders(HttpHeaders.CONTENT_RANGE));
+					assertEquals(1, r.getHeaders(HttpHeaders.CONTENT_RANGE).length);
 				}
 			}
 		});

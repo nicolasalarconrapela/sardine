@@ -32,7 +32,7 @@ public class LockTest
 
 	// TODO : Obtener de un properties
 	/** URL prinicipal del proyecto*/
-	private final String URL_principal = "";
+	private final String URL_principal = "http://192.168.0.35:8090/remote.php/webdav/";
 
 	@Test
 	public void testLockUnlock() throws Exception

@@ -37,7 +37,7 @@ public class DavPrincipal
 	 * DAV:property not supported.
 	 * </p>
 	 */
-	public static enum PrincipalType
+	public enum PrincipalType
 	{
 		/**
 		 * Principal is a String reference to an existing principal (url)
